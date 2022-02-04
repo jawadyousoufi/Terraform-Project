@@ -1,4 +1,4 @@
-module "rds cluster" {
+module "rds_cluster" {
   source  = "terraform-aws-modules/rds-aurora/aws"
 
   name           = "Team1-RDS"
