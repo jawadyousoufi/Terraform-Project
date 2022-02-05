@@ -1,16 +1,11 @@
-variable "sg" {
-    type = any
+variable "namespace" {
+  type = string
 }
 
-variable "db_config" {
-  type = object (
-      {
-      user = string
-      password = string
-      database = string
-      hostname = string
-      port = string
+variable "vpc" {
+  type = any #A
+}
 
-      }
-  )  
+variable "sg" {
+  type = any #A
 }

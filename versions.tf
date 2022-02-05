@@ -12,10 +12,10 @@ terraform {
 }
 }
 
-backend "remote" {
-    organization = "team1"
+# backend "remote" {
+#     organization = "team1"
 
-    workspace {
-        name = "terraform-project"
-    }
-}
+#     workspace {
+#         name = "terraform-project"
+#     }
+# }
