@@ -10,13 +10,22 @@
 #         content = templatefile("${path.module}/cloud_config.yaml")
 #     }
 # }
-data "aws_ami" "ubuntu" {
-    most_recent = true
-    filter {
-        name= "name"
-        values = ["ubuntu/images/hvm/ssd/ubuntu-bionic-18.04-amd6"]
-    }
-    owners = ["099720109477"]
+
+data "aws_ami" "centos" {
+owners      = ["125523088429"]
+most_recent = true
+  filter {
+      name   = "name"
+      values = ["CentOS 7.9.2009 *"]
+  }
+  filter {
+      name   = "architecture"
+      values = ["x86_64"]
+  }
+  filter {
+      name   = "root-device-type"
+      values = ["ebs"]
+  }
 }
 
 
@@ -24,7 +33,7 @@ resource "aws_launch_template" "webserver" {
     name_prefix = var.namespace
     image_id = data.aws_ami.ubuntu.id
     instance_type = "t2.micro"
-    user_data = filebase64("${path.module}/example.sh")
+    user_data = file("/home/ec2-user/Terraformaws/autoscalling/wordpress.sh")
     key_name = var.ssh_keypair
     iam_instance_profile {
       name = module.iam_instance_profile.name
