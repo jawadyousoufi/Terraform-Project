@@ -7,7 +7,7 @@ variable "region" {
 variable "rds_cluster" {
   type        = string
   description = "The name of the rds cluster"
-  default     = " Team1-"
+  default     = "rds-"
 }
 
 variable "vpc_id" {

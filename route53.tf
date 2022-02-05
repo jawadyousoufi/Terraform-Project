@@ -1,29 +1,33 @@
-resource "aws_route53_record" "reader1" {
+resource "aws_route53_record" "www-live" {
   zone_id = "Z0131651J2KEHCW5QES6"
-  name    = "reader1.tuncaytas.com"
+  name    = "www"
   type    = "A"
   ttl     = "300"
-  records = [rds_cluster.Team1-RDS.public_ip]
+   set_identifier = "live"
+  records        = ["reader1.tuncaytas.com"]
 }
 
-resource "aws_route53_record" "reader2" {
+resource "aws_route53_record" "www-live" {
   zone_id = "Z0131651J2KEHCW5QES6"
-  name    = "reader2.tuncaytas.com"
+  name    = "www"
   type    = "A"
   ttl     = "300"
-  records = [rds_cluster.Team1-RDS.public_ip]
+     set_identifier = "live"
+  records        = ["reader2.tuncaytas.com"]
 }
-resource "aws_route53_record" "reader3" {
+resource "aws_route53_record" "www-live" {
   zone_id = "Z0131651J2KEHCW5QES6"
-  name    = "reader3.tuncaytas.com"
+  name    = "www"
   type    = "A"
   ttl     = "300"
-  records = [rds_cluster.Team1-RDS.public_ip]
+     set_identifier = "live"
+  records        = ["reader3.tuncaytas.com"]
 }
-resource "aws_route53_record" "writer" {
+resource "aws_route53_record" "www-live" {
   zone_id = "Z0131651J2KEHCW5QES6"
-  name    = "writer.tuncaytas.com"
+  name    = "www"
   type    = "A"
   ttl     = "300"
-  records = [rds_cluster.Team1-RDS.public_ip]
+     set_identifier = "live"
+  records        = ["reader1.tuncaytas.com"]
 }

@@ -1,7 +1,7 @@
 module "rds_cluster" {
   source  = "terraform-aws-modules/rds-aurora/aws"
 
-  name           = "Team1-RDS"
+  name           = "rds_cluster"
   engine         = "mysql"
   engine_version = "5.7"
   instance_class = "db.t2-micro"
@@ -14,6 +14,7 @@ module "rds_cluster" {
 
   vpc_id  = "default-vpc"
   subnets = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  
 
   allowed_security_groups = ["sg-vpc"]
   allowed_cidr_blocks     = ["10.20.0.0/20"]
