@@ -1,5 +1,5 @@
 module "autoscaling" {
-    source = "./modules/autoscaling"
+    source = "/home/ec2-user/Terraformaws/autoscalling"
     namespace = var.namespace
     ssh_keypair = var.ssh_keypair
 
@@ -9,7 +9,7 @@ module "autoscaling" {
 }
 
 module "database"{
-    source = "./module/database"
+    source = "/home/ec2-user/Terraformaws/database"
     namespace = var.namespace
 
     vpc = module.networking.vpc
@@ -17,6 +17,6 @@ module "database"{
 }
 
 module "networking"{
-    source = "./modules/networking"
+    source = "/home/ec2-user/Terraformaws/networking"
     namespace = var.namespace
 }
