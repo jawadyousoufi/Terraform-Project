@@ -31,7 +31,7 @@ most_recent = true
 
 resource "aws_launch_template" "webserver" {
     name_prefix = var.namespace
-    image_id = data.aws_ami.ubuntu.id
+    image_id = data.aws_ami.centos.id
     instance_type = "t2.micro"
     user_data = file("/home/ec2-user/Terraformaws/autoscalling/wordpress.sh")
     key_name = var.ssh_keypair

@@ -5,7 +5,6 @@ module "autoscaling" {
 
     vpc = module.networking.vpc
     sg  = module.networking.sg
-    db_config = module.networking.db_config
 }
 
 module "database"{
