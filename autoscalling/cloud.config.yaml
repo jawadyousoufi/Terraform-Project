@@ -1,0 +1,20 @@
+#cloud_config
+write_files:
+  -   path: /etc/server.conf
+      owner: root:root
+      permissions: "0644"
+      content: |
+        {
+          "user": "${user}",
+          "password": "${password}",
+          "database": "${database}",
+          "netloc": "${hostname}${port}"
+        }
+runcmd:
+  - curl -sL https://github.com/scottwinkler/vanilla-webserver-src
+  - unzip deployment.zip
+  - ./deployment/server
+packages:
+  - jq
+  - wget
+  - unzip
