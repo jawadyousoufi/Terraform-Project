@@ -1,15 +1,15 @@
-module "iam_instance_profile" {
-  source  = "terraform-aws-modules/iip/aws"
-  actions = ["logs:*" , "rds:*"]
-}
-data "cloudinit_config" "config" {
-    gzip = true
-    base64_encode = true
-    part {
-        content_type = "text/cloud-config"
-        content = templatefile("${path.module}/cloud_config.yaml")
-    }
-}
+# module "iam_instance_profile" {
+#   source  = "terraform-aws-modules/iip/aws"
+#   actions = ["logs:*" , "rds:*"]
+# }
+# data "cloudinit_config" "config" {
+#     gzip = true
+#     base64_encode = true
+#     part {
+#         content_type = "text/cloud-config"
+#         content = templatefile("${path.module}/cloud_config.yaml")
+#     }
+# }
 data "aws_ami" "ubuntu" {
     most_recent = true
     filter {
@@ -24,7 +24,7 @@ resource "aws_launch_template" "webserver" {
     name_prefix = var.namespace
     image_id = data.aws_ami.ubuntu.id
     instance_type = "t2.micro"
-    user_data = data.cloudinit_config.config.rendered
+    user_data = filebase64("${path.module}/example.sh")
     key_name = var.ssh_keypair
     iam_instance_profile {
       name = module.iam_instance_profile.name
