@@ -1,33 +1,33 @@
-resource "aws_route53_record" "www-live" {
+resource "aws_route53_record" "reader1-live" {
   zone_id = "Z0131651J2KEHCW5QES6"
-  name    = "www"
+  name    = "reader1"
   type    = "A"
   ttl     = "300"
    set_identifier = "live"
   records        = ["reader1.tuncaytas.com"]
 }
 
-resource "aws_route53_record" "www-live" {
+resource "aws_route53_record" "reader2-live" {
   zone_id = "Z0131651J2KEHCW5QES6"
-  name    = "www"
+  name    = "reader2"
   type    = "A"
   ttl     = "300"
      set_identifier = "live"
   records        = ["reader2.tuncaytas.com"]
 }
-resource "aws_route53_record" "www-live" {
+resource "aws_route53_record" "reader3-live" {
   zone_id = "Z0131651J2KEHCW5QES6"
-  name    = "www"
+  name    = "reader3"
   type    = "A"
   ttl     = "300"
      set_identifier = "live"
   records        = ["reader3.tuncaytas.com"]
 }
-resource "aws_route53_record" "www-live" {
+resource "aws_route53_record" "writer-live" {
   zone_id = "Z0131651J2KEHCW5QES6"
-  name    = "www"
+  name    = "writer"
   type    = "A"
   ttl     = "300"
      set_identifier = "live"
-  records        = ["reader1.tuncaytas.com"]
+  records        = ["writer.tuncaytas.com"]
 }

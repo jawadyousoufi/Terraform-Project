@@ -1,8 +1,8 @@
 module "rds_cluster" {
   source  = "terraform-aws-modules/rds-aurora/aws"
 
-  name           = "rds_cluster"
-  engine         = "mysql"
+  name           = "rds-cluster"
+  engine         = "aurora-mysql"
   engine_version = "5.7"
   instance_class = "db.t2-micro"
   instances = {
