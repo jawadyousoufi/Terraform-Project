@@ -31,11 +31,15 @@ resource "aws_autoscaling_group" "webserver" {
   min_size                  = 4
   vpc_zone_identifier       = var.vpc.public_subnets
   target_group_arns         =  module.alb.target_group_arns
+  
   launch_template {
       id = aws_launch_template.webserver.id
-      version = aws_launch_template.webserver.latest_version
+      version = aws_launch_template.webserver.latest_version 
+
   }
 }
+
+
 module "alb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "~> 5.0"
@@ -68,6 +72,8 @@ resource "aws_security_group" "allow_tls" {
   name        = "allow_tls"
   description = "Allow TLS inbound traffic"
   vpc_id      = var.vpc-id
+
+
 
   ingress {
     description      = "TLS from VPC"

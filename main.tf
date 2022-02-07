@@ -1,3 +1,9 @@
+module "networking"{
+    source = "/home/ec2-user/Terraform-Project/networking"
+    namespace = var.namespace
+}
+
+
 module "autoscaling" {
     source = "/home/ec2-user/Terraform-Project/autoscalling"
     namespace = var.namespace
@@ -5,6 +11,7 @@ module "autoscaling" {
 
     vpc = module.networking.vpc
     sg  = module.networking.sg
+    depends_on = [module.networking.vpc]
 }
 
 module "database"{
@@ -13,9 +20,4 @@ module "database"{
 
     vpc = module.networking.vpc
     sg  = module.networking.sg    
-}
-
-module "networking"{
-    source = "/home/ec2-user/Terraform-Project/networking"
-    namespace = var.namespace
 }

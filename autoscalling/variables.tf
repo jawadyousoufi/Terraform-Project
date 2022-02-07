@@ -13,5 +13,5 @@ variable "sg" {
 }
 
 variable "vpc-id" {
-  default = "vpc-0a6b91a7b960c3388"
+  default = "vpc-0efe5dfa1ccfd74d0"
 }
