@@ -33,18 +33,18 @@ resource "aws_launch_template" "webserver" {
     name_prefix = var.namespace
     image_id = data.aws_ami.centos.id
     instance_type = "t2.micro"
-    user_data = file("/home/ec2-user/Terraformaws/autoscalling/wordpress.sh")
+    user_data = filebase64("/home/ec2-user/Terraformaws/autoscalling/wordpress.sh")
     key_name = var.ssh_keypair
     # iam_instance_profile {
     #   name = module.iam_instance_profile.name
     # }
-    vpc_security_group_ids = [var.sg.websvr]
+    vpc_security_group_ids = [aws_security_group.allow_tls.id]
 }
 resource "aws_autoscaling_group" "webserver" {
   name                      = "${var.namespace}-asg"
   max_size                  = 6
   min_size                  = 4
-  vpc_zone_identifier       = var.vpc.private_subnets
+  vpc_zone_identifier       = var.vpc.public_subnets
   target_group_arns         =  module.alb.target_group_arns
   launch_template {
       id = aws_launch_template.webserver.id
@@ -78,4 +78,30 @@ module "alb" {
       target_type      = "instance"
     }
   ]
+}
+resource "aws_security_group" "allow_tls" {
+  name        = "allow_tls"
+  description = "Allow TLS inbound traffic"
+  vpc_id      = "vpc-01e012999ca1ca11e"
+
+  ingress {
+    description      = "TLS from VPC"
+    from_port        = 80
+    to_port          = 80
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  tags = {
+    Name = "allow_tls"
+  }
 }

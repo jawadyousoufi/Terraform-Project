@@ -16,3 +16,11 @@ resource "aws_db_instance" "default" {
   vpc_security_group_ids = [var.sg.db]
   skip_final_snapshot  = true
 }
+
+# resource "aws_route53_record" "reader" {
+#   zone_id = aws_route53_zone.primary.zone_id
+#   name    = "reader.tuncaytas.com"
+#   type    = "CNAME"
+#   ttl     = "300"
+#   records = [aws_db_instance.default.address]
+# }

@@ -11,7 +11,7 @@ module "vpc" {
   database_subnets = ["10.0.21.0/24", "10.0.22.0/24", "10.0.23.0/24"]
   create_database_subnet_group = true
   enable_nat_gateway = true
-  enable_vpn_gateway = true
+  map_public_ip_on_launch = true
 }
 
 module "lb_sg" {
