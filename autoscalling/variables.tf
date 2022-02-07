@@ -11,3 +11,7 @@ variable "vpc" {
 variable "sg" {
   type = any
 }
+
+variable "vpc-id" {
+  default = "vpc-0a6b91a7b960c3388"
+}

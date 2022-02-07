@@ -67,7 +67,7 @@ module "alb" {
 resource "aws_security_group" "allow_tls" {
   name        = "allow_tls"
   description = "Allow TLS inbound traffic"
-  vpc_id      = "vpc-07c68ac7e3c8a0ec3"
+  vpc_id      = var.vpc-id
 
   ingress {
     description      = "TLS from VPC"
